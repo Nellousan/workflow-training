@@ -7,7 +7,6 @@
 #include <memory.h>
 #include "do-op.h"
 
-
 size_t do_op(long int nb1, char op, long int nb2);
 long int get_number(char *number);
 
