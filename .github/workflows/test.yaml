@@ -16,15 +16,17 @@ jobs:
     - name: Run Functionnal Tests
       run: |
         ./functionnal-test.sh >> functionnal-test.txt
-    - name: Upload Artifacts
+    - name: Upload Artifact test_run.txt
       uses: actions/upload-artifact@v2
       with:
         name: Unit Tests
         path: tests_run.txt
+    - name: Upload Artifact coverage.txt
       uses: actions/upload-artifact@v2
       with:
         name: Coverage
         path: coverage.txt
+    - name: Upload Artifact functionnal-test.txt
       uses: actions/upload-artifact@v2
       with:
         name: Functionnal Tests
