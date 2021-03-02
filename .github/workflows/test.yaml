@@ -9,13 +9,14 @@ jobs:
       image: epitechcontent/epitest-docker
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Run Unit Tests
       run: |
         make tests_run >> tests_run.txt
         make coverage >> coverage.txt
     - name: Run Functionnal Tests
       run: |
+        make
         ./functional-test.sh >> functional-test.txt
     - name: Upload Artifact test_run.txt
       uses: actions/upload-artifact@v2
