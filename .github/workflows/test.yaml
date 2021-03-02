@@ -10,11 +10,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Run Functional Tests
+      run: |
+        make
+        ./functional-test.sh >> functional-test.txt
     - name: Run Unit Tests
       run: |
         make tests_run >> tests_run.txt
         make coverage >> coverage.txt
-
     - name: Upload Artifact test_run.txt
       uses: actions/upload-artifact@v2
       with:
@@ -25,5 +28,9 @@ jobs:
       with:
         name: Coverage
         path: coverage.txt
-
+    - name: Upload Artifact functional-test.txt
+      uses: actions/upload-artifact@v2
+      with:
+        name: Functional Tests
+        path: functional-test.txt
         
