@@ -14,10 +14,7 @@ jobs:
       run: |
         make tests_run >> tests_run.txt
         make coverage >> coverage.txt
-    - name: Run Functionnal Tests
-      run: |
-        make
-        ./functional-test.sh >> functional-test.txt
+
     - name: Upload Artifact test_run.txt
       uses: actions/upload-artifact@v2
       with:
@@ -28,9 +25,5 @@ jobs:
       with:
         name: Coverage
         path: coverage.txt
-    - name: Upload Artifact functional-test.txt
-      uses: actions/upload-artifact@v2
-      with:
-        name: Functionnal Tests
-        path: functional-test.txt
+
         
