@@ -1,0 +1,41 @@
+name: unit-tests
+
+on: [push, pull_request]
+
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+    container: 
+      image: epitechcontent/epitest-docker
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Functional Tests
+      continue-on-error: true
+      run: |
+        make
+        ./functional-test.sh >> functional-test.txt
+    - name: Run Unit Tests
+      continue-on-error: true
+      run: |
+        make tests_run >> tests_run.txt
+        make coverage >> coverage.txt
+    - name: Upload Artifact test_run.txt
+      continue-on-error: true
+      uses: actions/upload-artifact@v2
+      with:
+        name: Unit Tests
+        path: tests_run.txt
+    - name: Upload Artifact coverage.txt
+      continue-on-error: true
+      uses: actions/upload-artifact@v2
+      with:
+        name: Coverage
+        path: coverage.txt
+    - name: Upload Artifact functional-test.txt
+      continue-on-error: true
+      uses: actions/upload-artifact@v2
+      with:
+        name: Functional Tests
+        path: functional-test.txt
+        
