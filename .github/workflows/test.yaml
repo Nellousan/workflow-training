@@ -5,37 +5,31 @@ on: [push]
 jobs:
   run-unit-tests:
     runs-on: ubuntu-latest
-    container:
-      container: 
-        image: epitechcontent/epitest-docker
+    container: 
+      image: epitechcontent/epitest-docker
 
-      steps:
-      - uses: actions/checkout@v1
-
-      - name: Run Unit Tests
-        run: |
-          make tests_run >> tests_run.txt
-          make coverage >> coverage.txt
-
-      - name: Run Functionnal Tests
-        run: |
-          ./functionnal-test.sh >> functionnal-test.txt
-
-      - name: Upload Artifact test_run.txt
-        uses: actions/upload-artifact@v2
-        with:
-          name: Unit Tests
-          path: tests_run.txt
-
-      - name: Upload Artifact coverage.txt
-        uses: actions/upload-artifact@v2
-        with:
-          name: Coverage
-          path: coverage.txt
-
-      - name: Upload Artifact functionnal-test.txt
-        uses: actions/upload-artifact@v2
-        with:
-          name: Functionnal Tests
-          path: functionnal-test.txt
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run Unit Tests
+      run: |
+        make tests_run >> tests_run.txt
+        make coverage >> coverage.txt
+    - name: Run Functionnal Tests
+      run: |
+        ./functionnal-test.sh >> functionnal-test.txt
+    - name: Upload Artifact test_run.txt
+      uses: actions/upload-artifact@v2
+      with:
+        name: Unit Tests
+        path: tests_run.txt
+    - name: Upload Artifact coverage.txt
+      uses: actions/upload-artifact@v2
+      with:
+        name: Coverage
+        path: coverage.txt
+    - name: Upload Artifact functionnal-test.txt
+      uses: actions/upload-artifact@v2
+      with:
+        name: Functionnal Tests
+        path: functionnal-test.txt
         
