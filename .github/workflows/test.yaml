@@ -6,7 +6,7 @@ jobs:
   run-unit-tests:
 
     runs-on: epitechcontent/epitest-docker
-    
+
     steps:
     - uses: actions/checkout@v1
     - name: Run Unit Tests
@@ -15,7 +15,7 @@ jobs:
         make coverage >> coverage.txt
     - name: Run Functionnal Tests
       run: |
-      ./functionnal-test.sh >> functionnal-test.txt
+        ./functionnal-test.sh >> functionnal-test.txt
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
